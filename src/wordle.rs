@@ -1,4 +1,4 @@
-use crate::words::all_words;
+use crate::words::{all_words, daily_words};
 use rand::prelude::SliceRandom;
 
 #[derive(Copy, Clone, Debug)]
@@ -28,7 +28,10 @@ pub fn new_game() -> Game {
     Game {
         game_state: GameState::InProgress,
         rows: vec![],
-        word: all_words().choose(&mut rand::thread_rng()).unwrap().clone(),
+        word: daily_words()
+            .choose(&mut rand::thread_rng())
+            .unwrap()
+            .clone(),
     }
 }
 
